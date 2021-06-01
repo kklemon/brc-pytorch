@@ -1,0 +1,4 @@
+benchmark:
+  name: copy_first
+  args:
+    t: 100

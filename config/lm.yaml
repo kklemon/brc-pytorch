@@ -1,0 +1,22 @@
+training:
+  device: cuda
+  batch_size: 128
+  epochs: 10
+  lr: 1e-3
+  bptt: 256
+  test_frac: 0.1
+  val_frac: 0.1
+
+model:
+  hidden_size: 200
+  num_layers: 2
+  cell: NBRC
+  bias: True
+  dropout: 0.0
+  embed_size: 200
+
+data:
+  path: ???
+
+logging:
+  log_interval: 100
