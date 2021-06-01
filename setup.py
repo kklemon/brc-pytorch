@@ -7,7 +7,7 @@ README = (ROOT / 'README.md').read_text()
 setup(
     name='brc',
     packages=find_packages(),
-    version='0.1.0',
+    version='0.1.1',
     license='MIT',
     description='Implementation of the bistable recurrent cell (BRC) in PyTorch',
     long_description=README,
