@@ -1,0 +1,6 @@
+benchmark:
+  name: denoising
+  args:
+    t: 100
+    n: 0
+    k: 5

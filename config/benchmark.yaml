@@ -1,0 +1,17 @@
+training:
+  device: cuda
+  batch_size: 128
+  train_steps: 30000
+  eval_steps: 100
+  lr: 1e-3
+  num_workers: 0
+
+model:
+  hidden_size: 100
+  num_layers: 2
+  cell: NBRC
+  bias: True
+  dropout: 0.0
+
+logging:
+  log_interval: 100
