@@ -15,7 +15,7 @@ def to_batch_first(whatever):
     return nested_apply(lambda t: t.transpose(0, 1) if t.ndim > 2 else t, whatever)
 
 
-def repackage_hidden(hidden):
+def detach_hidden(hidden):
     return nested_apply(lambda t: t.clone().detach(), hidden)
 
 
