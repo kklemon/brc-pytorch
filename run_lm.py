@@ -33,7 +33,7 @@ def train(model, batches, batch_size, opt, device, epoch, summary, log_interval=
 
     for step, batch in enumerate(batches):
         src, trg = utils.to_device(batch, device=device)
-        hidden = utils.repackage_hidden(hidden)
+        hidden = utils.detach_hidden(hidden)
 
         out, hidden = model(src, hidden)
         loss = F.cross_entropy(out.view(-1, out.shape[-1]), trg.view(-1))
@@ -132,7 +132,7 @@ def main(cfg: DictConfig):
     for epoch in range(cfg.training.epochs):
         train(model, train_batches, cfg.training.batch_size, opt, device, epoch, summary)
         evaluate(model, valid_batches, 1, device, epoch, summary, 'val')
-        torch.save(model, 'model.pt')
+        # torch.save(model, 'model.pt')
 
     print('TESTING')
     evaluate(model, test_batches, 1, device)
