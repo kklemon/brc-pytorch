@@ -1,9 +1,9 @@
 training:
   device: cuda
-  batch_size: 128
+  batch_size: 256
   epochs: 10
   lr: 1e-3
-  bptt: 256
+  bptt: 512
   test_frac: 0.1
   val_frac: 0.1
 
