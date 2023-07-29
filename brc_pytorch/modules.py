@@ -29,7 +29,7 @@ class BRC(torch.jit.ScriptModule):
                 self.bias.zero_()
 
     def init_hidden(self, batch_size: int):
-        return [torch.zeros(batch_size, self.hidden_size)]
+        return [torch.zeros(batch_size, self.hidden_size, device=self.hw.device)]
 
     def get_hidden_activation(self, hidden: Tensor) -> List[Tensor]:
         return (torch.cat([hidden, hidden], dim=-1) * self.hw).chunk(2, dim=-1)
@@ -101,10 +101,7 @@ class LSTMCell(torch.jit.ScriptModule):
                 self.bias.zero_()
 
     def init_hidden(self, batch_size: int):
-        return [
-            torch.zeros(batch_size, self.hidden_size),
-            torch.zeros(batch_size, self.hidden_size)
-        ]
+        return list(torch.zeros(2, batch_size, self.hidden_size, device=self.iw.device))
 
     @torch.jit.script_method
     def forward(self, input: Tensor, hidden: List[Tensor]) -> Tuple[Tensor, List[Tensor]]:
@@ -145,7 +142,7 @@ class GRUCell(torch.jit.ScriptModule):
                 self.bias.zero_()
 
     def init_hidden(self, batch_size: int):
-        return [torch.zeros(batch_size, self.hidden_size)]
+        return [torch.zeros(batch_size, self.hidden_size, device=self.iw.device)]
 
     @torch.jit.script_method
     def forward(self, input: Tensor, hidden: List[Tensor]) -> Tuple[Tensor, List[Tensor]]:
